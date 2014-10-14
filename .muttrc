@@ -1,0 +1,133 @@
+# ------------------------------------------------------------------------------
+# MANUAL PAGE: http://www.mutt.org/doc/manual/manual-6.html#commands
+# OTHER INSTRUCTIONS:
+# https://wiki.archlinux.org/index.php/mutt#Native_IMAP_support
+# http://battlemidget.blogspot.fi/2005/07/configuring-imap-with-mutt.html
+# ------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# GENERAL SETTINGS
+#-------------------------------------------------------------------------------
+set realname='Mika Kutila'
+set use_from=yes
+set envelope_from="yes"
+set date_format="%Y-%m-%d %T"
+#set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
+set index_format="%4C %Z %d %-30.30L %s"
+#set index_format="%4C %Z %{%b %d} %-15.15L (%4l) %s" # default
+#set sort=threads # enable threaded mode
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# ACCOUNT INFORMATION
+#-------------------------------------------------------------------------------
+folder-hook GMAIL/* source ~/.mutt/accountGMAIL
+folder-hook KAPSI/* source ~/.mutt/accountKAPSI
+folder-hook UTU/* source ~/.mutt/accountUTU
+folder-hook IEEE/* source ~/.mutt/accountIEEE
+source ~/.mutt/accountUTU
+#-------------------------------------------------------------------------------
+# CHANGE ACCOUNT VIEW WITH KEYS F1, F2, F3, F4
+#-------------------------------------------------------------------------------
+macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/accountUTU<enter><change-folder>!<enter><first-entry>'
+macro index <f3> '<sync-mailbox><enter-command>source ~/.mutt/accountGMAIL<enter><change-folder>!<enter><first-entry>'
+macro index <f4> '<sync-mailbox><enter-command>source ~/.mutt/accountKAPSI<enter><change-folder>!<enter><first-entry>'
+macro index <f5> '<sync-mailbox><enter-command>source ~/.mutt/accountIEEE<enter><change-folder>!<enter><first-entry>'
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# ALIASES
+#-------------------------------------------------------------------------------
+source ~/.mutt/aliases
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# HEADER CACHE
+#-------------------------------------------------------------------------------
+set header_cache = ~/.mutt/headercache/
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# EDITOR
+#-------------------------------------------------------------------------------
+set editor = vim
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# OWN KEY BINDINGS
+#-------------------------------------------------------------------------------
+# PAGER
+# Scroll message view up and down with Vim-like j and k:
+bind pager j next-line
+bind pager k previous-line
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# SORT THE MESSAGES, NEWEST ON TOP
+set sort = reverse-date
+
+set delete = yes
+
+set move=no
+
+set mail_check=30
+
+set timeout=15
+#-------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# PAGE VIEW
+set wrap = 80
+# ------------------------------------------------------------------------------
+
+
+# ------------------------------------------------------------------------------
+# URLVIEW
+#Mutt originally had an internal command for identifying urls in email and launching external programs to follow them. This functionality was removed and put in the urlview helper program. If you have urlview installed then you will probably need a mutt macro in your ~/.muttrc file to call it:
+
+macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+
+#In the pager, hit Ctrl and b together to launch urlview.
+# ------------------------------------------------------------------------------
+# Alternative to urlview
+
+#Urlview extracts the URLs from the message and presents a simple list as a selectable menu. This is fine, but it doesn't supply the context which is important for distinguishing obscure URLs like http://ei5nazha.yz.yamagata-u.ac.jp/~aito/w3m/eng/. The w3m web browser can be used as an alternative to urlview - This macro will pipe the email into w3m:
+
+#macro pager \cb <pipe-entry>'w3m'<enter> 'Follow links in w3m'
+
+#Once the message is visible, hit : to highlight all the urls.
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# View HTML automatically:
+auto_view text/html
+# ------------------------------------------------------------------------------
+auto_view application/pdf
+
+# ------------------------------------------------------------------------------
+# SET MUTT-SPECIFIC MAILCAP:
+set mailcap_path = ~/.mutt/mailcap
+# ------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# COLORS
+#-------------------------------------------------------------------------------
+color status black white
+color error  white red
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# SOLARIZED THEME
+#-------------------------------------------------------------------------------
+source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-256.muttrc
+#-------------------------------------------------------------------------------
+
+#source ~/.mutt/dot_muttrc-256color
+
+#-------------------------------------------------------------------------------
+# Colorize smileys: :-) ;-) :-/ :-(
+#-------------------------------------------------------------------------------
+color body black yellow "[;:]-[)/(|]"
+color body black yellow "[;:][)/(|]"
+#-------------------------------------------------------------------------------
+
