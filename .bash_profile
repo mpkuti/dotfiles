@@ -37,7 +37,9 @@ export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Ho
 #-------------------------------------------------------------------------------
 # MY OWN UPDATE-ALL SCRIPT
 #-------------------------------------------------------------------------------
-alias update-all='sudo tlmgr update -self && sudo tlmgr update -all && brew upgrade && brew update && vim +PluginUpdate +qall && conda update conda && conda update anaconda'
+alias update-all='sudo tlmgr update -self && sudo tlmgr update -all && \
+    brew upgrade && brew update && vim +PluginUpdate +qall \
+    && conda update conda && conda update anaconda'
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
