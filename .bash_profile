@@ -7,7 +7,7 @@ export LANG=en_US.UTF-8
 alias vim='/Users/mpkuti/mvim -v'
 alias log="tail -40 -f /var/log/system.log"
 
-#alias dropbox='cd /Volumes/Mac\ HD\ storage/Dropbox'
+#alias dropbox='cd /Volumes/HD/Dropbox'
 #-------------------------------------------------------------------------------
 
 # add the bin dir to PATH:
